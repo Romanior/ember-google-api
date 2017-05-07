@@ -1,0 +1,21 @@
+<div layout="column" tabindex="-1" role="main" class="flex layout-column">
+  {{#paper-toolbar}}
+    {{#if gapi.isSignedIn}}
+      {{#paper-toolbar-tools}}
+        <h2>
+          Tasks
+        </h2>
+        <span class="flex"></span>
+        <img class="toolbar-avatar" src="{{gapi.currentUser.avatar}}">
+        {{#paper-button noink=true onClick=(route-action "signOut")}}
+          Sign Out {{paper-icon "exit-to-app" title="Sign Out"}}
+        {{/paper-button}}
+
+      {{/paper-toolbar-tools}}
+    {{/if}}
+  {{/paper-toolbar}}
+
+  {{#paper-content class="md-padding"}}
+    {{outlet}}
+  {{/paper-content}}
+</div>

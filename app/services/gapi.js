@@ -1,10 +1,22 @@
 import Ember from 'ember';
 import ENV from '../config/environment';
 
-const { RSVP, Service } = Ember;
+const { RSVP, Service, computed } = Ember;
 
 export default Service.extend({
   isSignedIn: false,
+
+  currentUser: computed('currentUserGapi', function() {
+    let currentUserGapi = this.get('currentUserGapi');
+    if (currentUserGapi) {
+      let profile = currentUserGapi.getBasicProfile();
+
+      return {
+        email:  profile.getEmail(),
+        avatar: profile.getImageUrl()
+      }
+    }
+  }),
 
   /**
    * Load google api script and init client
@@ -28,19 +40,25 @@ export default Service.extend({
    */
   initClient() {
     return gapi.client.init({
-      clientId: ENV.GAPI.CLIENT_ID,
-      scope:    ENV.GAPI.SCOPES
+      clientId:      ENV.GAPI.CLIENT_ID,
+      scope:         ENV.GAPI.SCOPES,
+      discoveryDocs: ENV.GAPI.DOCS
     }).then(() => {
-      let isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
-      this.set('isSignedIn', isSignedIn);
+      let updateStatus = (status) => {
+        this.set('isSignedIn', status);
 
-      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateStatus.bind(this, status));
-      return isSignedIn;
+        if (status) {
+          this.set('currentUserGapi', gapi.auth2.getAuthInstance().currentUser.get());
+        } else {
+          this.set('currentUserGapi', null);
+        }
+      };
+
+      updateStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateStatus);
+
+      return this.get('isSignedIn');
     });
-  },
-
-  updateStatus(status) {
-    this.set('isSignedIn', status);
   },
 
   /**
@@ -48,7 +66,6 @@ export default Service.extend({
    * @returns {*}
    */
   signIn() {
-    debugger
     return gapi.auth2.getAuthInstance().signIn();
   },
 

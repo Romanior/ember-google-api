@@ -12,5 +12,13 @@ export default Route.extend({
         this.transitionTo('auth');
       }
     })
+  },
+
+  actions: {
+    signOut() {
+      this.get('gapi').signOut().then(() => {
+        this.transitionTo('auth');
+      })
+    }
   }
 });

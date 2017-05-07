@@ -13,7 +13,6 @@ export default Route.extend({
   actions: {
     signIn() {
       this.get('gapi').signIn().then(() => {
-        debugger
         this.transitionTo('lists');
       }, () => {
         // error handling

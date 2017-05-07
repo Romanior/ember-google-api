@@ -5,7 +5,7 @@ export default Route.extend({
   gapi: service(),
 
   beforeModel() {
-    return this.get('gapi').initAuth().then((isSignedIn) => {
+    return this.get('gapi').auth().then((isSignedIn) => {
       if (isSignedIn) {
         this.transitionTo('lists');
       } else {

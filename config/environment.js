@@ -24,9 +24,9 @@ module.exports = function(environment) {
 
     GAPI: {
       CLIENT_ID: '1098270604340-a9l200qlatqarcccqdebnkbh6faeaaqc.apps.googleusercontent.com',
-      SCOPES:    'https://www.googleapis.com/auth/tasks.readonly',
+      SCOPE:     'https://www.googleapis.com/auth/tasks',
+      DOCS:      ["https://www.googleapis.com/discovery/v1/apis/tasks/v1/rest"],
       SRC:       'https://apis.google.com/js/api.js',
-      DOCS:      ['https://www.googleapis.com/discovery/v1/apis/translate/v2/rest']
     }
   };
 

@@ -23,7 +23,7 @@ export default Service.extend({
    * @returns {RSVP.Promise}
    * @public
    */
-  initAuth() {
+  auth() {
     return this.load().then(() => {
       return new RSVP.Promise((resolve, reject) => {
         gapi.load('client:auth2', () => {
@@ -41,7 +41,7 @@ export default Service.extend({
   initClient() {
     return gapi.client.init({
       clientId:      ENV.GAPI.CLIENT_ID,
-      scope:         ENV.GAPI.SCOPES,
+      scope:         ENV.GAPI.SCOPE,
       discoveryDocs: ENV.GAPI.DOCS
     }).then(() => {
       let updateStatus = (status) => {
@@ -91,5 +91,13 @@ export default Service.extend({
       tag.defer = true;
       tag.src = ENV.GAPI.SRC;
     });
+  },
+
+  getLists() {
+    return gapi.client.tasks.tasklists.list();
+  },
+
+  getTasks(tasklist) {
+    return gapi.client.tasks.tasks.list({ tasklist })
   }
 });

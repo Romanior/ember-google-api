@@ -1,5 +1,6 @@
 @import 'ember-paper';
 
+
 .app-loading {
   position: absolute;
   left: 50%;
@@ -12,4 +13,21 @@
   max-width: 40px;
   height: auto;
   margin: 0 10px;
+}
+
+.site-nav-container {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+
+.md-list-item-link {
+  display: block;
+  text-decoration: none;
 }

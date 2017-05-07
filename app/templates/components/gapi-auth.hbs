@@ -1,0 +1,5 @@
+{{#if gapi.isSignedIn}}
+  <button {{action "signOut"}}>Sign Out</button>
+{{else}}
+  <button {{action "signIn"}}>Sign in with Google Account</button>
+{{/if}}

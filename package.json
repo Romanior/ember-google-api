@@ -1,7 +1,7 @@
 {
   "name": "google-api-tasks",
   "version": "0.0.0",
-  "description": "Small description for google-api-tasks goes here",
+  "description": "google api tasks manager",
   "license": "MIT",
   "author": "",
   "directories": {

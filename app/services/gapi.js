@@ -33,6 +33,7 @@ export default Service.extend({
     }).then(() => {
       let isSignedIn = gapi.auth2.getAuthInstance().isSignedIn.get();
       this.set('isSignedIn', isSignedIn);
+
       gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateStatus.bind(this, status));
       return isSignedIn;
     });

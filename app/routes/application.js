@@ -5,8 +5,12 @@ export default Route.extend({
   gapi: service(),
 
   beforeModel() {
-    this.get('gapi').initAuth().then((gapi) => {
-      debugger;
+    return this.get('gapi').initAuth().then((isSignedIn) => {
+      if (isSignedIn) {
+        this.transitionTo('lists');
+      } else {
+        this.transitionTo('auth');
+      }
     })
   }
 });

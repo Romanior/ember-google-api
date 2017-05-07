@@ -3,11 +3,11 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'google-api-tasks',
-    environment: environment,
-    rootURL: '/',
-    locationType: 'auto',
-    EmberENV: {
-      FEATURES: {
+    environment:  environment,
+    rootURL:      '/',
+    locationType: 'hash',
+    EmberENV:     {
+      FEATURES:          {
         // Here you can enable experimental features on an ember canary build
         // e.g. 'with-controller': true
       },
@@ -20,6 +20,12 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    GAPI: {
+      CLIENT_ID: '1098270604340-a9l200qlatqarcccqdebnkbh6faeaaqc.apps.googleusercontent.com',
+      SCOPES:    'https://www.googleapis.com/auth/tasks.readonly',
+      SRC:       'https://apis.google.com/js/api.js'
     }
   };
 

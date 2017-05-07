@@ -1,14 +1,12 @@
-{{#paper-item}}
+{{#paper-item class=(if task.isCompleted 'item--completed')}}
   {{paper-checkbox
     value=task.isCompleted
-    onChange=(action "checkTask" task)}}
+    onChange=(route-action "checkTask" task)}}
 
-  {{#content-editable
+  {{content-editable
     value=task.title
     placeholder="New task..."
     type="text"}}
-
-  {{/content-editable}}
 
 {{/paper-item}}
 {{paper-divider}}

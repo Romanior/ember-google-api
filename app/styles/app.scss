@@ -26,8 +26,23 @@
   left: 0;
 }
 
-
 .md-list-item-link {
   display: block;
   text-decoration: none;
+}
+
+.item--completed {
+  background: #f3f3f3;
+}
+
+
+[contenteditable] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  &:active,
+  &:focus {
+    outline: none;
+    background: #ffffe7;
+  }
 }

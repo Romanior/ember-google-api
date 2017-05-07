@@ -99,5 +99,9 @@ export default Service.extend({
 
   getTasks(tasklist) {
     return gapi.client.tasks.tasks.list({ tasklist })
+  },
+
+  updateTask(task, tasklist, fields, body) {
+    return gapi.client.tasks.tasks.update({task, tasklist, fields, body});
   }
 });

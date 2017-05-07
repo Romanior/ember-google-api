@@ -2,7 +2,7 @@ import { moduleFor, test } from 'ember-qunit';
 
 moduleFor('route:lists/list', 'Unit | Route | lists/list', {
   // Specify the other units that are required for this test.
-  // needs: ['controller:foo']
+  needs: ['service:gapi']
 });
 
 test('it exists', function(assert) {

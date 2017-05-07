@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('service:google-api', 'Unit | Service | google api', {
+moduleFor('service:gapi', 'Unit | Service | google api', {
   // Specify the other units that are required for this test.
   // needs: ['service:foo']
 });

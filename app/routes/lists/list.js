@@ -1,26 +1,11 @@
 import Ember from 'ember';
 const { inject: { service }, Route, Object: EmberObject, computed } = Ember;
 
-const taskExtend = (task, list, gapi, isNew = false) => {
+const newTask = (list) => {
   return {
-    title: computed(function() {
-      return isNew ? '' : task.title;
-    }),
+    title:    '',
     taskList: list,
-    isNew,
-    isCompleted: computed('status', {
-      get() {
-        return this.get('status') === 'completed';
-      },
-
-      set(key, value) {
-        this.set('status', 'completed');
-        return value;
-      }
-    }),
-    update(fields, body) {
-      gapi.updateTask(task.id, list, fields, body)
-    }
+    isNew:    true
   }
 };
 
@@ -31,10 +16,21 @@ export default Route.extend({
     let gapi = this.get('gapi');
 
     return gapi.getTasks(list).then((tasks) => {
-      let items = tasks.result.items || [taskExtend({}, list, gapi, true)];
+      let items = tasks.result.items || [newTask(list)];
       return items.map((task) => {
         let emTask = EmberObject.create(task);
-        return emTask.reopen(taskExtend(task, list, gapi))
+        return emTask.reopen({
+          isCompleted: computed('status', {
+            get() {
+              return this.get('status') === 'completed';
+            },
+
+            set(key, value) {
+              this.set('status', 'completed');
+              return value;
+            }
+          }),
+        })
       })
 
     })
@@ -43,7 +39,6 @@ export default Route.extend({
   actions: {
     checkTask(task, value) {
       task.set('isCompleted', value);
-      task.update(['status'], { status: task.get('status') });
     }
   }
 });

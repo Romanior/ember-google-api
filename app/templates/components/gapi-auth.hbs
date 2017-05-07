@@ -1,5 +1,8 @@
-{{#if gapi.isSignedIn}}
-  <button {{action "signOut"}}>Sign Out</button>
-{{else}}
-  <button {{action "signIn"}}>Sign in with Google Account</button>
-{{/if}}
+<h1>Sign In with Google Account</h1>
+
+{{#unless gapi.isSignedIn}}
+  {{#paper-button raised=true primary=true onClick=(route-action "signIn")}}
+    Sign in
+  {{/paper-button}}
+{{/unless}}
+

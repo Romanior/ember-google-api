@@ -1,2 +1,13 @@
-{{outlet}}
+{{#paper-sidenav-container class="site-nav-container flex layout-row"}}
+  {{#paper-sidenav class="md-sidenav-left" locked-open="gt-sm"}}
+    {{#paper-toolbar}}
+      <div class="md-toolbar-tools">
+        <div class="logo">
+          <strong>Your Tasks</strong>
+        </div>
+      </div>
+    {{/paper-toolbar}}
+  {{/paper-sidenav}}
 
+  {{outlet}}
+{{/paper-sidenav-container}}

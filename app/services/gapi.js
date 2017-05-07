@@ -48,6 +48,7 @@ export default Service.extend({
    * @returns {*}
    */
   signIn() {
+    debugger
     return gapi.auth2.getAuthInstance().signIn();
   },
 
